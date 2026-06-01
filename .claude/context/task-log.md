@@ -10,7 +10,8 @@ Each completed feature appended here by orchestrator.
 
 ## sprint-0/01-frontend-app-shell
 **Date:** 2026-06-02
-**Pipeline step:** analyze → in progress
+**Status:** DONE
+**Completed:** 2026-06-02
 
 ### What is being built
 A React 18 + Vite + TypeScript frontend application shell — the structural skeleton that every subsequent sprint will build on. No real data, no auth, no API calls. Pure UI scaffolding: routing, nav, providers, and utility functions.
@@ -35,15 +36,15 @@ None. Pure frontend, no API calls.
 Not applicable for this task. No DB queries, no API calls.
 
 ### Acceptance criteria
-- AC1: `npm run dev` starts without errors
-- AC2: App loads in browser, topbar visible with 4 tabs
-- AC3: Each tab navigates to correct route (/orders, /new-order, /invoices, /clients)
-- AC4: Active tab is visually highlighted
-- AC5: `npm run typecheck` passes with zero errors
-- AC6: `npm run lint` passes with zero errors
-- AC7: formatDate(new Date('2026-06-15')) returns "Jun 15, 2026"
-- AC8: formatCurrency(480) returns "$480"
-- AC9: Mobile layout works on 390px width
+- AC1: ✅ `npm run dev` starts without errors
+- AC2: ✅ App loads in browser, topbar visible with 4 tabs
+- AC3: ✅ Each tab navigates to correct route (/orders, /new-order, /invoices, /clients)
+- AC4: ✅ Active tab is visually highlighted
+- AC5: ✅ `npm run typecheck` passes with zero errors
+- AC6: ✅ `npm run lint` passes with zero errors
+- AC7: ✅ formatDate(new Date('2026-06-15')) returns "Jun 15, 2026"
+- AC8: ✅ formatCurrency(480) returns "$480"
+- AC9: ✅ Mobile layout works on 390px width (labels hidden on sm, icons always visible)
 
 ### Risks / assumptions
 - shadcn/ui init requires interactive prompts — use components.json directly

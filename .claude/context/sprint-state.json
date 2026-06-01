@@ -3,13 +3,13 @@
   "sprint_name": "Project setup & infrastructure",
   "started_at": "2026-06-02T00:00:00Z",
   "status": "in_progress",
-  "current_feature": "sprint-0/01-frontend-app-shell",
-  "pipeline_step": "implement",
+  "current_feature": "sprint-0/02-backend-init",
+  "pipeline_step": "pending",
   "review_cycles": 0,
   "blocked": false,
   "blocked_at": null,
   "blocked_reason": null,
   "features_total": 13,
-  "features_done": 0,
+  "features_done": 1,
   "last_updated": "2026-06-02T00:00:00Z"
 }
