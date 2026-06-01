@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MovingDesk — Task Board</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f8f6;color:#1a1a18;font-size:13px}
+.header{padding:16px 24px;background:#fff;border-bottom:0.5px solid #e0e0dc;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:15px;font-weight:500}.logo span{color:#1D9E75}
+.stats{display:flex;gap:16px}
+.stat{text-align:center}
+.stat-num{font-size:18px;font-weight:500;color:#1D9E75}
+.stat-label{font-size:10px;color:#888;margin-top:1px}
+.body{padding:20px 24px}
+.sprint{margin-bottom:28px}
+.sprint-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:0.5px solid #e0e0dc}
+.sprint-badge{font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px}
+.sprint-title{font-size:14px;font-weight:500}
+.sprint-progress{margin-left:auto;font-size:11px;color:#888}
+.progress-bar{height:3px;background:#e0e0dc;border-radius:2px;margin-top:4px;overflow:hidden}
+.progress-fill{height:100%;border-radius:2px;background:#1D9E75;transition:width .3s}
+.tasks{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px}
+.task{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start;transition:border-color .15s}
+.task.done{background:#f6fbf8;border-color:#9FE1CB}
+.task.done .task-title{color:#aaa;text-decoration:line-through}
+.task.in-progress{border-color:#378ADD;background:#f0f6fd}
+.check{width:16px;height:16px;border-radius:4px;border:1px solid #ccc;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;cursor:pointer}
+.check.done{background:#1D9E75;border-color:#1D9E75}
+.check.done::after{content:'✓'}
+.check.in-progress{background:#378ADD;border-color:#378ADD}
+.check.in-progress::after{content:'…'}
+.task-body{flex:1}
+.task-title{font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:3px}
+.task-meta{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:10px;padding:1px 6px;border-radius:4px;font-weight:500}
+.tag-be{background:#E6F1FB;color:#185FA5}
+.tag-fe{background:#E1F5EE;color:#085041}
+.tag-both{background:#EEEDFE;color:#3C3489}
+.task-pr{font-size:10px;color:#378ADD;margin-top:3px}
+.task-pr a{color:#378ADD;text-decoration:none}
+.task-pr a:hover{text-decoration:underline}
+.sprint-0 .sprint-badge{background:#E6F1FB;color:#185FA5}
+.sprint-1 .sprint-badge{background:#FAEEDA;color:#633806}
+.sprint-2 .sprint-badge{background:#E1F5EE;color:#085041}
+.sprint-3 .sprint-badge{background:#EEEDFE;color:#3C3489}
+.sprint-4 .sprint-badge{background:#FCEBEB;color:#791F1F}
+.updated{font-size:10px;color:#bbb;margin-top:20px;text-align:right}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">Moving<span>Desk</span> — Task Board</div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="stat-done">0</div><div class="stat-label">Done</div></div>
+    <div class="stat"><div class="stat-num" id="stat-total" style="color:#378ADD">0</div><div class="stat-label">Total</div></div>
+    <div class="stat"><div class="stat-num" id="stat-pct" style="color:#BA7517">0%</div><div class="stat-label">Progress</div></div>
+  </div>
+</div>
+
+<div class="body">
+
+<!-- ═══ SPRINT 0 ═══ -->
+<div class="sprint sprint-0">
+  <div class="sprint-header">
+    <span class="sprint-badge">Sprint 0</span>
+    <span class="sprint-title">Project setup & infrastructure</span>
+    <span class="sprint-progress" id="s0-progress">0/2</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="s0-bar" style="width:0%"></div></div>
+  <div class="tasks" style="margin-top:10px">
+
+    <div class="task" id="task-s0-01">
+      <div class="check" id="check-s0-01"></div>
+      <div class="task-body">
+        <div class="task-title">Frontend app shell</div>
+        <div class="task-meta">
+          <span class="tag tag-fe">frontend</span>
+        </div>
+        <div class="task-pr" id="pr-s0-01"></div>
+      </div>
+    </div>
+
+    <div class="task" id="task-s0-02">
+      <div class="check" id="check-s0-02"></div>
+      <div class="task-body">
+        <div class="task-title">Backend init + DB migrations</div>
+        <div class="task-meta">
+          <span class="tag tag-be">backend</span>
+        </div>
+        <div class="task-pr" id="pr-s0-02"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ SPRINT 1 ═══ -->
+<div class="sprint sprint-1">
+  <div class="sprint-header">
+    <span class="sprint-badge">Sprint 1</span>
+    <span class="sprint-title">Auth — register, login, invite</span>
+    <span class="sprint-progress" id="s1-progress">0/5</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="s1-bar" style="width:0%"></div></div>
+  <div class="tasks" style="margin-top:10px">
+
+    <div class="task" id="task-s1-01">
+      <div class="check" id="check-s1-01"></div>
+      <div class="task-body">
+        <div class="task-title">POST /auth/register</div>
+        <div class="task-meta"><span class="tag tag-be">backend</span></div>
+        <div class="task-pr" id="pr-s1-01"></div>
+      </div>
+    </div>
+
+    <div class="task" id="task-s1-02">
+      <div class="check" id="check-s1-02"></div>
+      <div class="task-body">
+        <div class="task-title">POST /auth/login</div>
+        <div class="task-meta"><span class="tag tag-be">backend</span></div>
+        <div class="task-pr" id="pr-s1-02"></div>
+      </div>
+    </div>
+
+    <div class="task" id="task-s1-03">
+      <div class="check" id="check-s1-03"></div>
+      <div class="task-body">
+        <div class="task-title">POST /auth/logout + Auth middleware</div>
+        <div class="task-meta"><span class="tag tag-be">backend</span></div>
+        <div class="task-pr" id="pr-s1-03"></div>
+      </div>
+    </div>
+
+    <div class="task" id="task-s1-04">
+      <div class="check" id="check-s1-04"></div>
+      <div class="task-body">
+        <div class="task-title">POST /users/invite + /users/join</div>
+        <div class="task-meta"><span class="tag tag-be">backend</span></div>
+        <div class="task-pr" id="pr-s1-04"></div>
+      </div>
+    </div>
+
+    <div class="task" id="task-s1-05">
+      <div class="check" id="check-s1-05"></div>
+      <div class="task-body">
+        <div class="task-title">Auth pages — Register, Login, Setup, Join</div>
+        <div class="task-meta"><span class="tag tag-fe">frontend</span></div>
+        <div class="task-pr" id="pr-s1-05"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ SPRINT 2 ═══ -->
+<div class="sprint sprint-2">
+  <div class="sprint-header">
+    <span class="sprint-badge">Sprint 2</span>
+    <span class="sprint-title">Orders — core CRUD + board</span>
+    <span class="sprint-progress" id="s2-progress">0/2</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="s2-bar" style="width:0%"></div></div>
+  <div class="tasks" style="margin-top:10px">
+
+    <div class="task" id="task-s2-01">
+      <div class="check" id="check-s2-01"></div>
+      <div class="task-body">
+        <div class="task-title">Orders API — full CRUD + Crews</div>
+        <div class="task-meta"><span class="tag tag-be">backend</span></div>
+        <div class="task-pr" id="pr-s2-01"></div>
+      </div>
+    </div>
+
+    <div class="task" id="task-s2-02">
+      <div class="check" id="check-s2-02"></div>
+      <div class="task-body">
+        <div class="task-title">Orders board + New order form</div>
+        <div class="task-meta"><span class="tag tag-fe">frontend</span></div>
+        <div class="task-pr" id="pr-s2-02"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ SPRINT 3 ═══ -->
+<div class="sprint sprint-3">
+  <div class="sprint-header">
+    <span class="sprint-badge">Sprint 3</span>
+    <span class="sprint-title">Invoices + Clients</span>
+    <span class="sprint-progress" id="s3-progress">0/2</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="s3-bar" style="width:0%"></div></div>
+  <div class="tasks" style="margin-top:10px">
+
+    <div class="task" id="task-s3-01">
+      <div class="check" id="check-s3-01"></div>
+      <div class="task-body">
+        <div class="task-title">Invoices — generate, PDF, share, send</div>
+        <div class="task-meta"><span class="tag tag-both">both</span></div>
+        <div class="task-pr" id="pr-s3-01"></div>
+      </div>
+    </div>
+
+    <div class="task" id="task-s3-02">
+      <div class="check" id="check-s3-02"></div>
+      <div class="task-body">
+        <div class="task-title">Clients — list, detail, history</div>
+        <div class="task-meta"><span class="tag tag-both">both</span></div>
+        <div class="task-pr" id="pr-s3-02"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ SPRINT 4 ═══ -->
+<div class="sprint sprint-4">
+  <div class="sprint-header">
+    <span class="sprint-badge">Sprint 4</span>
+    <span class="sprint-title">Billing + Settings + Polish</span>
+    <span class="sprint-progress" id="s4-progress">0/2</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="s4-bar" style="width:0%"></div></div>
+  <div class="tasks" style="margin-top:10px">
+
+    <div class="task" id="task-s4-01">
+      <div class="check" id="check-s4-01"></div>
+      <div class="task-body">
+        <div class="task-title">Stripe billing — checkout, webhook, enforcement</div>
+        <div class="task-meta"><span class="tag tag-be">backend</span></div>
+        <div class="task-pr" id="pr-s4-01"></div>
+      </div>
+    </div>
+
+    <div class="task" id="task-s4-02">
+      <div class="check" id="check-s4-02"></div>
+      <div class="task-body">
+        <div class="task-title">Settings + Team management</div>
+        <div class="task-meta"><span class="tag tag-both">both</span></div>
+        <div class="task-pr" id="pr-s4-02"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="updated" id="last-updated">Last updated: never</div>
+
+</div>
+
+<script>
+// ─── TASK STATE ───────────────────────────────────────────────
+// PR agent updates this object and calls updateBoard()
+// Format: { 'taskId': { status: 'done'|'in-progress', pr: 'https://...' } }
+const taskState = {
+  // PR agent writes here — example:
+  // 's0-01': { status: 'done', pr: 'https://github.com/org/repo/pull/1' },
+};
+
+// ─── SPRINT CONFIG ────────────────────────────────────────────
+const sprints = {
+  s0: ['s0-01', 's0-02'],
+  s1: ['s1-01', 's1-02', 's1-03', 's1-04', 's1-05'],
+  s2: ['s2-01', 's2-02'],
+  s3: ['s3-01', 's3-02'],
+  s4: ['s4-01', 's4-02'],
+};
+
+// ─── RENDER ───────────────────────────────────────────────────
+function updateBoard() {
+  let totalDone = 0;
+  let totalAll = 0;
+
+  Object.entries(sprints).forEach(([sprint, tasks]) => {
+    let sprintDone = 0;
+    tasks.forEach(id => {
+      totalAll++;
+      const state = taskState[id];
+      const taskEl = document.getElementById('task-' + id);
+      const checkEl = document.getElementById('check-' + id);
+      const prEl = document.getElementById('pr-' + id);
+
+      if (!taskEl) return;
+
+      taskEl.className = 'task';
+      checkEl.className = 'check';
+
+      if (state?.status === 'done') {
+        taskEl.classList.add('done');
+        checkEl.classList.add('done');
+        sprintDone++;
+        totalDone++;
+      } else if (state?.status === 'in-progress') {
+        taskEl.classList.add('in-progress');
+        checkEl.classList.add('in-progress');
+      }
+
+      if (prEl && state?.pr) {
+        prEl.innerHTML = `PR: <a href="${state.pr}" target="_blank">${state.pr.split('/').pop()}</a>`;
+      }
+    });
+
+    const total = tasks.length;
+    const pct = total ? Math.round(sprintDone / total * 100) : 0;
+    const progressEl = document.getElementById(sprint + '-progress');
+    const barEl = document.getElementById(sprint + '-bar');
+    if (progressEl) progressEl.textContent = sprintDone + '/' + total;
+    if (barEl) barEl.style.width = pct + '%';
+  });
+
+  const pct = totalAll ? Math.round(totalDone / totalAll * 100) : 0;
+  document.getElementById('stat-done').textContent = totalDone;
+  document.getElementById('stat-total').textContent = totalAll;
+  document.getElementById('stat-pct').textContent = pct + '%';
+  document.getElementById('last-updated').textContent =
+    'Last updated: ' + new Date().toLocaleString('en-US');
+}
+
+updateBoard();
+</script>
+</body>
+</html>

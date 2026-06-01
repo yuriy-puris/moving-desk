@@ -1,0 +1,20 @@
+{
+  "project": "MovingDesk",
+  "version": "0.1.0",
+  "agents": {
+    "orchestrator": ".claude/agents/orchestrator.md",
+    "analyzer": ".claude/agents/analyzer.md",
+    "explorer": ".claude/agents/explorer.md",
+    "implementer": ".claude/agents/implementer.md",
+    "tester": ".claude/agents/tester.md",
+    "validator": ".claude/agents/validator.md",
+    "reviewer": ".claude/agents/reviewer.md",
+    "pr": ".claude/agents/pr.md"
+  },
+  "context": {
+    "decisions": ".claude/context/decisions.md",
+    "sprint_state": ".claude/context/sprint-state.json",
+    "feature_queue": ".claude/context/feature-queue.md",
+    "task_log": ".claude/context/task-log.md"
+  }
+}
