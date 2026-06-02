@@ -11,6 +11,7 @@ import LoginPage from '@/routes/LoginPage'
 import QuickSetupPage from '@/routes/QuickSetupPage'
 import JoinPage from '@/routes/JoinPage'
 import PublicInvoicePage from '@/routes/PublicInvoicePage'
+import SettingsPage from '@/routes/SettingsPage'
 
 export default function App(): JSX.Element {
   return (
@@ -27,6 +28,7 @@ export default function App(): JSX.Element {
           <Route path="/new-order" element={<NewOrderPage />} />
           <Route path="/invoices" element={<InvoicesPage />} />
           <Route path="/clients" element={<ClientsPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
         </Route>
       </Route>
     </Routes>
