@@ -1,15 +1,15 @@
 {
-  "current_sprint": 3,
-  "sprint_name": "Invoices + Clients",
+  "current_sprint": 4,
+  "sprint_name": "Billing + Settings",
   "started_at": "2026-06-02",
   "status": "done",
-  "current_feature": "sprint-3/02-clients",
+  "current_feature": "sprint-4/02-settings",
   "pipeline_step": "done",
   "review_cycles": 0,
   "blocked": false,
   "blocked_at": null,
   "blocked_reason": null,
   "features_total": 13,
-  "features_done": 4,
+  "features_done": 5,
   "last_updated": "2026-06-02"
 }

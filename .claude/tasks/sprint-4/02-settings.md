@@ -51,12 +51,14 @@ When trial_expired and no active subscription:
   Only billing page is accessible.
 
 ## Acceptance criteria
-- AC1: Logo uploads and shows in invoices
-- AC2: Base rates save and reflect in new order price calculation
-- AC3: Invite sends email, new user appears in team list
-- AC4: Remove user revokes their access immediately
-- AC5: Trial banner appears with correct days remaining
-- AC6: Read-only mode disables all form inputs
+- [x] AC1: Logo uploads and shows in invoices
+- [x] AC2: Base rates save and reflect in new order price calculation
+- [x] AC3: Invite sends email, new user appears in team list
+- [x] AC4: Remove user revokes their access immediately
+- [x] AC5: Trial banner appears with correct days remaining
+- [x] AC6: Read-only mode disables all form inputs
+
+**Status: DONE (FE only) — PR #5 https://github.com/yuriy-puris/moving-desk/pull/5**
 
 ---
 
