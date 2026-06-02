@@ -72,6 +72,30 @@ export interface Company {
   logoUrl: string | null
 }
 
+export type UserRole = 'owner' | 'dispatcher'
+export type SubscriptionPlan = 'trial' | 'basic' | 'pro'
+export type SubscriptionStatus = 'trialing' | 'active' | 'canceled' | 'past_due'
+
+export interface TeamMember {
+  id: string
+  name: string
+  email: string
+  role: UserRole
+}
+
+export interface Settings {
+  companyName: string
+  logoUrl: string | null
+  timezone: string
+  baseRates: Record<string, number>
+}
+
+export interface Subscription {
+  plan: SubscriptionPlan
+  status: SubscriptionStatus
+  trialEndsAt?: string
+}
+
 export interface Client {
   id: string
   tenantId: string
