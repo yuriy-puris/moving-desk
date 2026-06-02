@@ -1,6 +1,6 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import type { HomeSize, CreateOrderData } from '@/types'
 import { useCreateOrder, findClientByPhone } from '@/hooks/useOrders'
 
@@ -20,7 +20,7 @@ export interface NewOrderFormState {
   notes: string
 }
 
-const INITIAL: NewOrderFormState = {
+const BLANK: NewOrderFormState = {
   phone: '', clientName: '', fromAddress: '', toAddress: '',
   moveDate: '', homeSize: '2br', fromFloor: 1, toFloor: 1,
   fromElevator: false, toElevator: false, packing: false,
@@ -29,8 +29,15 @@ const INITIAL: NewOrderFormState = {
 
 export function useNewOrderForm() {
   const navigate = useNavigate()
-  const [form, setForm] = useState<NewOrderFormState>(INITIAL)
+  const location = useLocation()
+  const prefill = (location.state as { clientPhone?: string; clientName?: string } | null) ?? {}
   const { mutate, isPending } = useCreateOrder()
+
+  const [form, setForm] = useState<NewOrderFormState>(() => ({
+    ...BLANK,
+    phone: prefill.clientPhone ?? '',
+    clientName: prefill.clientName ?? '',
+  }))
 
   function set<K extends keyof NewOrderFormState>(k: K, v: NewOrderFormState[K]): void {
     setForm((p) => ({ ...p, [k]: v }))
