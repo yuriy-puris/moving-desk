@@ -42,11 +42,13 @@ Status dropdown to change status
 Save button → PATCH /orders/:id
 
 ## Acceptance criteria
-- AC1: Board shows orders in correct columns
-- AC2: Phone blur → auto-fills client data if found
-- AC3: Size pills update live price
-- AC4: Save creates order, card appears on board
-- AC5: Status change moves card to correct column
+- [x] AC1: Board shows orders in correct columns
+- [x] AC2: Phone blur → auto-fills client data if found
+- [x] AC3: Size pills update live price
+- [x] AC4: Save creates order, card appears on board
+- [x] AC5: Status change moves card to correct column
+
+**Status: DONE — PR #2 https://github.com/yuriy-puris/moving-desk/pull/2**
 
 ---
 

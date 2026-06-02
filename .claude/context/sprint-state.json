@@ -1,15 +1,15 @@
 {
-  "current_sprint": 1,
-  "sprint_name": "Auth & core flows",
+  "current_sprint": 2,
+  "sprint_name": "Orders board",
   "started_at": "2026-06-02",
   "status": "in_progress",
-  "current_feature": "sprint-1/05-auth-pages",
+  "current_feature": "sprint-2/02-orders-board",
   "pipeline_step": "done",
-  "review_cycles": 2,
+  "review_cycles": 1,
   "blocked": false,
   "blocked_at": null,
   "blocked_reason": null,
   "features_total": 13,
-  "features_done": 1,
+  "features_done": 2,
   "last_updated": "2026-06-02"
 }
