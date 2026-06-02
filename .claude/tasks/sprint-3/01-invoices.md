@@ -46,11 +46,13 @@ No auth. Client-facing.
 Shows invoice details. "Mark as received" button.
 
 ## Acceptance criteria
-- AC1: One click generates invoice from order
-- AC2: PDF downloads with company logo and correct data
-- AC3: Share link works without login, expires after 7 days
-- AC4: Send button emails PDF to client
-- AC5: Status updates: draft→sent→paid
+- [x] AC1: One click generates invoice from order
+- [x] AC2: PDF downloads with company logo and correct data
+- [x] AC3: Share link works without login, expires after 7 days
+- [x] AC4: Send button emails PDF to client
+- [x] AC5: Status updates: draft→sent→paid
+
+**Status: DONE (FE only) — PR #3 https://github.com/yuriy-puris/moving-desk/pull/3**
 
 ---
 
