@@ -30,10 +30,12 @@ Order history list.
 "New order" button.
 
 ## Acceptance criteria
-- AC1: Search by phone returns correct client
-- AC2: New order from client page pre-fills all known fields
-- AC3: Order history shows all past orders
-- AC4: Notes saved on blur (auto-save)
+- [x] AC1: Search by phone returns correct client
+- [x] AC2: New order from client page pre-fills all known fields
+- [x] AC3: Order history shows all past orders
+- [x] AC4: Notes saved on blur (auto-save)
+
+**Status: DONE (FE only) — PR #4 https://github.com/yuriy-puris/moving-desk/pull/4**
 
 ---
 

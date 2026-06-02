@@ -2,14 +2,14 @@
   "current_sprint": 3,
   "sprint_name": "Invoices + Clients",
   "started_at": "2026-06-02",
-  "status": "in_progress",
-  "current_feature": "sprint-3/01-invoices",
+  "status": "done",
+  "current_feature": "sprint-3/02-clients",
   "pipeline_step": "done",
-  "review_cycles": 1,
+  "review_cycles": 0,
   "blocked": false,
   "blocked_at": null,
   "blocked_reason": null,
   "features_total": 13,
-  "features_done": 3,
+  "features_done": 4,
   "last_updated": "2026-06-02"
 }
