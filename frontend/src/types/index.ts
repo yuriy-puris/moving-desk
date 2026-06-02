@@ -72,6 +72,18 @@ export interface Company {
   logoUrl: string | null
 }
 
+export interface Client {
+  id: string
+  tenantId: string
+  name: string
+  phone: string
+  email: string
+  notes: string
+  orderCount: number
+  lastMoveDate?: string
+  createdAt: string
+}
+
 export interface CreateOrderData {
   clientName: string
   phone: string
