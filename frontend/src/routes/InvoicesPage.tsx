@@ -30,12 +30,7 @@ export default function InvoicesPage(): JSX.Element {
         </div>
         <div className="divide-y overflow-y-auto flex-1">
           {invoices.map((inv) => (
-            <InvoiceListItem
-              key={inv.id}
-              invoice={inv}
-              selected={inv.id === (selected?.id ?? null)}
-              onClick={() => setSelectedId(inv.id)}
-            />
+            <InvoiceListItem key={inv.id} invoice={inv} selected={inv.id === selected?.id} onClick={() => setSelectedId(inv.id)} />
           ))}
         </div>
       </aside>
