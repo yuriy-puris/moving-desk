@@ -3,6 +3,28 @@ import { db } from '../db'
 import { subscriptions, tenants, users } from '../db/schema'
 import { signToken } from '../lib/jwt'
 
+export async function loginUser(email: string) {
+  const rows = await db
+    .select({
+      id: users.id,
+      email: users.email,
+      name: users.name,
+      role: users.role,
+      password_hash: users.password_hash,
+      tenant_id: users.tenant_id,
+      tenantName: tenants.name,
+      plan: tenants.plan,
+      trial_ends_at: tenants.trial_ends_at,
+      sub_status: subscriptions.status,
+    })
+    .from(users)
+    .innerJoin(tenants, eq(tenants.id, users.tenant_id))
+    .leftJoin(subscriptions, eq(subscriptions.tenant_id, tenants.id))
+    .where(eq(users.email, email))
+    .limit(1)
+  return rows[0] ?? null
+}
+
 export function generateSlug(companyName: string): string {
   return companyName
     .toLowerCase()
