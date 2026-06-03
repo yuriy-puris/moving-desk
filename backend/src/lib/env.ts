@@ -1,0 +1,14 @@
+import { z } from 'zod'
+import 'dotenv/config'
+
+const schema = z.object({
+  DATABASE_URL: z.string().min(1),
+  JWT_SECRET: z.string().min(32),
+  JWT_EXPIRES_IN: z.string().default('7d'),
+  RESEND_API_KEY: z.string().min(1),
+  FRONTEND_URL: z.string().url(),
+  PORT: z.coerce.number().default(3000),
+  NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+})
+
+export const env = schema.parse(process.env)
