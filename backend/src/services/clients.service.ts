@@ -15,7 +15,10 @@ export async function listClients(tenantId: string, search?: string) {
       orderCount: sql<number>`cast(count(${orders.id}) as int)`,
     })
     .from(clients)
-    .leftJoin(orders, eq(orders.client_id, clients.id))
+    .leftJoin(
+      orders,
+      and(eq(orders.client_id, clients.id), eq(orders.tenant_id, tenantId))
+    )
     .where(
       and(
         eq(clients.tenant_id, tenantId),
